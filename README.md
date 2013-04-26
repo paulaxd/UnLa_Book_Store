@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Introduction
 
 CodeIgniter Bootstrap kick starts the development process of the web development process by including Twitter Bootstrap into CodeIgniter. It also includes certain libraries such as AWS and Facebook in-case you are developing applications requiring those SDKs. So stop writing the same code over again and start working on your idea.
@@ -19,3 +20,7 @@ This is currently a very active project, there are no projected release locks pl
 ## License
 
 MIT with [CodeIgniter Amendments](http://codeigniter.com/user_guide/license.html)
+=======
+UnLa_Book_Store
+===============
+>>>>>>> 07dd707a1f0d2c17360f2d498be2266114dc5a8e

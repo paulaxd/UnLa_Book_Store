@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 .DS_Store
 .swp
 application/cache
 application/logs
+=======
+*/config/development
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+>>>>>>> 07dd707a1f0d2c17360f2d498be2266114dc5a8e
