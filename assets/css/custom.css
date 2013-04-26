@@ -5,3 +5,20 @@
 body {
    padding-top: 15px;
 }
+
+.book_main{
+   width:210px;
+   height: 350px;
+   float:left;
+   margin-left: 50px;
+   margin-top:50px;
+   
+}
+
+#cart {
+background: url(../img/icons.png) -352px -110px no-repeat;
+display: block;
+width: 24px;
+height: 23px;
+border:0;
+}

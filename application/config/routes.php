@@ -37,9 +37,31 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-
-$route['default_controller'] = "frontpage";
+$route['books/(:any)'] = 'books/view/$1';
+$route['purchase/(:any)/(:any)/(:any)/(:any)/(:any)'] = 'cart/purchase/$1/$2/$3/$4/$5';
+$route['admin/view/(:any)'] = 'books/update/$1';
+$route['admin/delete/(:any)'] = 'books/delete/$1';
+$route['default_controller'] = 'books';
+$route['books/create'] = 'books/create';
+$route['books/insert'] = 'books/insert';
+$route['books/admin/list'] = 'books/list_books';
+$route['books/update'] = 'books/update';
+$route['cart/view'] = 'cart';
+$route['cart/update'] = 'cart/update';
+$route['ckeditor'] = 'ckeditor';
 $route['404_override'] = '';
+$route['books'] = 'books';
+$route['(:any)'] = 'pages/view/$1';
+$route['auth/register'] = 'auth/register';
+$route['auth/change/email'] = 'auth/change_email';
+$route['auth/change/pass'] = 'auth/change_password';
+$route['auth/login'] = 'auth/login';
+$route['auth/logout'] ='auth/logout';
+$route['auth'] = 'auth';
+$route['checkout'] ='cart/checkout';
+
+
+//$route['default_controller'] = 'pages/view';
 
 
 /* End of file routes.php */
