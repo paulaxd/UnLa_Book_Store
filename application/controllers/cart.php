@@ -43,16 +43,17 @@ class cart extends CI_Controller {
    $i= 1;
    while(isset($_POST[$i.'rowid']))
    {
-   $rowid = $_POST[$i.'rowid'];
-   $qty = $_POST[$i.'qty'];
+      
+      $rowid = $_POST[$i.'rowid'];
+      $qty = $_POST[$i.'qty'];
+      
+      $data = array(
+		  'rowid' => $rowid,
+		  'qty'   => $qty
+	       );
    
-   $data = array(
-               'rowid' => $rowid,
-               'qty'   => $qty
-            );
-
-    $this->cart->update($data); 
-    $i++;
+       $this->cart->update($data); 
+       $i++;
    }
    
    $data['status'] =' Tu carrito Se ha actualizado con éxito';
@@ -138,8 +139,10 @@ class cart extends CI_Controller {
  
 
 
-
-   
+   public function validate_stock($isbn)
+   {
+      return $this->books_model->validateStockUnity($isbn);
+   }
    
    /*	
    public function index()

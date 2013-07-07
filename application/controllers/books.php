@@ -20,50 +20,68 @@ class Books extends CI_Controller {
       if($this->cart->contents()){
          $flag = false;
          foreach ($this->cart->contents() as $items):
-         	 if($items['id'] === $isbn){
-                $p = $items['qty'];
-            	 $p=$p+1;
-                  
-                $data = array(
-                     'rowid' => $items['rowid'],
-                     'qty'   => $p,
-                  );
-                $this->cart->update($data); 
-                $flag =true;   
-
-               }
+	    if($items['id'] === $isbn){
+	       $p = $items['qty'];
+	       $p=$p+1;
+		  
+	       $data = array(
+		    'rowid' => $items['rowid'],
+		    'qty'   => $p,
+		 );
+	       $this->cart->update($data); 
+	       $flag =true;   
+	    }
          endforeach;
 
          if($flag == false){
             $p=1;
             $price = $this->books_model->get_price($isbn);
             $book = $this->books_model->get_books($isbn);
+	    $stock = $this->books_model->get_stock($isbn);
             $author = $book['author'];
-            $data = array(
+            if($stock == '0')
+	    {
+	       $p = 0;  
+	    }
+	    
+	    $data = array(
                      'id'      => $isbn,
                      'qty'     => $p,
                      'price'   => $price,
-                     'name'    => $author
+                     'name'    => $author,
+		     'stock'   => $stock
                   );
             $this->cart->insert($data);
-
          }
 
       }else{$p=1;
             $price = $this->books_model->get_price($isbn);
             $book = $this->books_model->get_books($isbn);
-            $author = $book['author'];
+            $stock = $this->books_model->get_stock($isbn);
+	    if($stock == 0)
+	    {
+	       $p = 0;  
+	    }
+	    
+	    $author = $book['author'];
             $data = array(
                      'id'      => $isbn,
                      'qty'     => $p,
                      'price'   => $price,
-                     'name'    => $author
+                     'name'    => $author,
+		     'stock'   => $stock
                   );
             $this->cart->insert($data);
       }
 
-      
-   echo  "<div>Agregaste ".$p." !!!</div>";
+   if($p == 0)
+   {
+       echo  "<div>Sin stock!!!</div>";  
+   }
+   else
+   {
+      echo  "<div>Agregaste ".$p."!!</div>";
+   }
       
    }
    
@@ -78,12 +96,14 @@ class Books extends CI_Controller {
 
       if ($this->tank_auth->is_logged_in()) {
         $amount = $this->books_model->quantity_buy($this->session->userdata('user_id'));
-        if($amount >= 5){
-         $descuento = 5;
-         $this->session->set_userdata('descuento', $descuento);
-        }elseif($amount >= 10){
-            $descuento = 10;
-            $this->session->set_userdata('descuento', $descuento);
+        if($amount > 0){
+         $descuento = $this->books_model->get_descuento_bycantidad($amount);
+	 if($descuento > 0){
+	    $this->session->set_userdata('descuento', $descuento);   
+	 }
+	 else{
+	    $this->session->set_userdata('descuento', null);
+	 }
         }
       }
 

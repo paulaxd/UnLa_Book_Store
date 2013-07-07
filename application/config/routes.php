@@ -59,6 +59,16 @@ $route['auth/login'] = 'auth/login';
 $route['auth/logout'] ='auth/logout';
 $route['auth'] = 'auth';
 $route['checkout'] ='cart/checkout';
+$route['descuentos'] ='descuentos';
+
+$route['descuentos/update_form'] ='descuentos/update_form';
+$route['descuentos/update'] ='descuentos/update';
+
+$route['descuentos/create_form'] ='descuentos/create_form';
+$route['descuentos/create'] ='descuentos/create';
+
+$route['descuentos/delete_form'] ='descuentos/delete_form';
+$route['descuentos/delete'] ='descuentos/delete';
 
 
 //$route['default_controller'] = 'pages/view';

@@ -14,6 +14,7 @@ if (isset($status) && $status != ''){
 ?>
 <?php echo form_open('cart/update'); ?>
 
+
 <table cellpadding="6" cellspacing="1" style="width:100%" border="1">
 
 <tr>
@@ -26,14 +27,19 @@ if (isset($status) && $status != ''){
 <?php $i = 1; ?>
 
 <?php foreach ($this->cart->contents() as $items): ?>
-
-	<?php echo form_hidden($i.'rowid', $items['rowid']); ?>
+  
+	<?php echo form_hidden($i.'rowid', $items['rowid']);?>
 	
 	<tr>
-	 
 	      <td>
-	      
-	      <?php echo form_input(array('name' => $i.'qty', 'value' => $items['qty'], 'maxlength' => '5', 'size' => '5'));?>
+	      <?php if($items['qty'] == -1): ?>
+		
+		  <p>Sin stock</p>
+		
+	      <?php else :?>
+		
+		  <?php echo form_input(array('name' => $i.'qty', 'value' => $items['qty'], 'maxlength' => '5', 'size' => '5'));?>
+	      <?php endif; ?>
 	      
 	      </td>
 	      <td>
@@ -48,14 +54,10 @@ if (isset($status) && $status != ''){
     
 			<?php endforeach; ?>
 		      </p>
-    
 		    <?php endif; ?>
-    
 	      </td>
 	      <td style="text-align:right"><?php echo $this->cart->format_number($items['price']); ?></td>
 	      <td style="text-align:right">$<?php echo $this->cart->format_number($items['subtotal']); ?></td>
-	  
-
 	</tr>
 
 <?php $i++; ?>
@@ -85,7 +87,6 @@ if (isset($status) && $status != ''){
   	<td class="right">$<?php echo $total; ?></td>
   
 	<?php }?>
-	
 </tr>
 
 </table>

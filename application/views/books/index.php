@@ -21,7 +21,7 @@ Regístrate y te facilitamos los libros que mas se adapten a tus preferencias, e
 <?php
   $i =0;
    foreach ($featured as $books_item):?>
-   <div class="book_main" >
+   <div class="book_main">
           <h4><?php $i +=1;
           echo $books_item['title'];?></h4>
           <?php echo "Autor: ".$books_item['author']. "<br />";
@@ -43,7 +43,7 @@ Regístrate y te facilitamos los libros que mas se adapten a tus preferencias, e
                
                </p>
                </p>   
-  </div>
+            </div>
     
 <?php endforeach ?>
 <br style="clear:both"; />

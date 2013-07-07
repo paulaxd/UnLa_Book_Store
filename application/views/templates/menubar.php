@@ -13,6 +13,7 @@
       <li <? if(is_active()): ?>class="active"<? endif; ?>><a href="<?= site_url() ?>">Home</a></li>
       <li><a href="<?= site_url().'auth/login' ?>">Loguearse</a></li>
       <li><a href="<?= site_url().'auth/logout' ?>">Despedirse</a></li>
+      
       <?php if($user = $this->session->userdata('username')){?>
       <li class="dropdown">
          <a class="dropdown-toggle" data-toggle="dropdown">Perfil <b class="caret"></b></a>
@@ -36,7 +37,9 @@
       <?php if($this->session->userdata('admin') == 1){?>
         <li><a href="<?= site_url()."books/create" ?>">Crear libro</a></li>
         <? }?>
-   
+      <?php if($this->session->userdata('admin') == 1){?>
+        <li><a href="<?= site_url()."descuentos" ?>">Descuentos</a></li>
+        <? }?>   
         <li><a href="<?= site_url()."cart/view" ?>">Ver mi carrito</a></li>
       </ul>
    </ul>

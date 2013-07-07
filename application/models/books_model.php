@@ -14,6 +14,12 @@ class Books_model extends CI_Model {
 		return $book['price'];	
 	}
         
+	public function get_stock($isbn){
+		$query = $this->db->get_where('books', array('isbn' => $isbn));
+		$book = $query->row_array();
+		return $book['stock'];	
+	}
+	
         public function get_books($isbn = FALSE)
         {
 	if ($isbn === FALSE)
@@ -290,6 +296,21 @@ class Books_model extends CI_Model {
 			}
 
 		return $amount;
-    }
+	}
+	
+	public function get_descuento_bycantidad($cantidad){
+		$this->db->select('descuento');
+		$this->db->where('cantidad <=', $cantidad);
+		$this->db->order_by('cantidad', 'desc');
+		$this->db->limit(1);
+		$query = $this->db->get('descuentos');
+		if($query->num_rows() > 0){
+			$row = $query->row_array();
+			return $row['descuento'];	
+		}
+		else{
+			return 0;
+		}
+	}
 
 }
